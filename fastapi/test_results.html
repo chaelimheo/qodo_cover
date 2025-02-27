@@ -1,0 +1,373 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test Results</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 20px;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            }
+            th, td {
+                border: 1px solid #ddd;
+                text-align: left;
+                padding: 8px;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .status-pass {
+                color: green;
+            }
+            .status-fail {
+                color: red;
+            }
+            pre {
+                background-color: #282c34 !important;
+                color: #ffffff !important;
+                padding: 10px;
+                border-radius: 5px;
+                overflow-x: auto;
+                white-space: pre-wrap;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 1.1em;  /* Slightly larger font size */
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Status</th>
+                <th>Reason</th>
+                <th>Exit Code</th>
+                <th>Language</th>
+                <th>Modified Test File</th>
+                <th>Details</th>
+            </tr>
+            
+            <tr>
+                <td class="status-PASS">PASS</td>
+                <td></td>
+                <td>0</td>
+                <td>python</td>
+                <td>
+                    <details>
+                        <summary>View Full Code</summary>
+                        <pre><code><span class="diff-unchanged">  import pytest</span>
+<span class="diff-unchanged">  from fastapi.testclient import TestClient</span>
+<span class="diff-unchanged">  from app import app</span>
+<span class="diff-unchanged">  from datetime import date</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  client = TestClient(app)</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_root():</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      Test the root endpoint by sending a GET request to "/" and checking the response status code and JSON body.</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      response = client.get("/")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"message": "Welcome to the FastAPI application!"}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-added">+ </span>
+<span class="diff-added">+ def test_current_date():</span>
+<span class="diff-added">+     response = client.get("/current-date")</span>
+<span class="diff-added">+     assert response.status_code == 200</span>
+<span class="diff-added">+     assert response.json() == {"date": date.today().isoformat()}</span>
+<span class="diff-added">+ </span></code></pre>
+                    </details>
+                </td>
+                <td>
+                    <details>
+                        <summary>View More</summary>
+                        <div><strong>STDERR:</strong> <pre><code class="language-python"></code></pre></div>
+                        <div><strong>STDOUT:</strong> <pre><code class="language-python">============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.4, pluggy-1.5.0
+rootdir: /home/runner/work/qodo_cover/qodo_cover/fastapi
+plugins: anyio-4.8.0, cov-6.0.0
+collected 2 items
+
+test_app.py ..                                                           [100%]
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name          Stmts   Miss  Cover
+---------------------------------
+app.py           44     16    64%
+test_app.py      13      0   100%
+---------------------------------
+TOTAL            57     16    72%
+Coverage XML written to file coverage.xml
+
+
+============================== 2 passed in 0.52s ===============================
+</code></pre></div>
+                        <div><strong>Test Code:</strong> <pre><code class="language-python">def test_current_date():
+    response = client.get("/current-date")
+    assert response.status_code == 200
+    assert response.json() == {"date": date.today().isoformat()}
+</code></pre></div>
+                        <div><strong>Imports:</strong> <pre><code class="language-python">""
+</code></pre></div>
+                    </details>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="status-PASS">PASS</td>
+                <td></td>
+                <td>0</td>
+                <td>python</td>
+                <td>
+                    <details>
+                        <summary>View Full Code</summary>
+                        <pre><code><span class="diff-unchanged">  import pytest</span>
+<span class="diff-unchanged">  from fastapi.testclient import TestClient</span>
+<span class="diff-unchanged">  from app import app</span>
+<span class="diff-unchanged">  from datetime import date</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  client = TestClient(app)</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_root():</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      Test the root endpoint by sending a GET request to "/" and checking the response status code and JSON body.</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      response = client.get("/")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"message": "Welcome to the FastAPI application!"}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-added">+ def test_divide_by_zero():</span>
+<span class="diff-added">+     response = client.get("/divide/10/0")</span>
+<span class="diff-added">+     assert response.status_code == 400</span>
+<span class="diff-added">+     assert response.json() == {"detail": "Cannot divide by zero"}</span>
+<span class="diff-added">+ </span>
+<span class="diff-added">+ </span>
+<span class="diff-unchanged">  def test_current_date():</span>
+<span class="diff-unchanged">      response = client.get("/current-date")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"date": date.today().isoformat()}</span>
+<span class="diff-unchanged">  </span></code></pre>
+                    </details>
+                </td>
+                <td>
+                    <details>
+                        <summary>View More</summary>
+                        <div><strong>STDERR:</strong> <pre><code class="language-python"></code></pre></div>
+                        <div><strong>STDOUT:</strong> <pre><code class="language-python">============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.4, pluggy-1.5.0
+rootdir: /home/runner/work/qodo_cover/qodo_cover/fastapi
+plugins: anyio-4.8.0, cov-6.0.0
+collected 3 items
+
+test_app.py ...                                                          [100%]
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name          Stmts   Miss  Cover
+---------------------------------
+app.py           44     14    68%
+test_app.py      17      0   100%
+---------------------------------
+TOTAL            61     14    77%
+Coverage XML written to file coverage.xml
+
+
+============================== 3 passed in 0.52s ===============================
+</code></pre></div>
+                        <div><strong>Test Code:</strong> <pre><code class="language-python">def test_divide_by_zero():
+    response = client.get("/divide/10/0")
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Cannot divide by zero"}
+</code></pre></div>
+                        <div><strong>Imports:</strong> <pre><code class="language-python">""
+</code></pre></div>
+                    </details>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="status-PASS">PASS</td>
+                <td></td>
+                <td>0</td>
+                <td>python</td>
+                <td>
+                    <details>
+                        <summary>View Full Code</summary>
+                        <pre><code><span class="diff-unchanged">  import pytest</span>
+<span class="diff-unchanged">  from fastapi.testclient import TestClient</span>
+<span class="diff-unchanged">  from app import app</span>
+<span class="diff-unchanged">  from datetime import date</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  client = TestClient(app)</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_root():</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      Test the root endpoint by sending a GET request to "/" and checking the response status code and JSON body.</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      response = client.get("/")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"message": "Welcome to the FastAPI application!"}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-added">+ def test_sqrt_negative_number():</span>
+<span class="diff-added">+     response = client.get("/sqrt/-4")</span>
+<span class="diff-added">+     assert response.status_code == 400</span>
+<span class="diff-added">+     assert response.json() == {"detail": "Cannot take square root of a negative number"}</span>
+<span class="diff-added">+ </span>
+<span class="diff-added">+ </span>
+<span class="diff-unchanged">  def test_divide_by_zero():</span>
+<span class="diff-unchanged">      response = client.get("/divide/10/0")</span>
+<span class="diff-unchanged">      assert response.status_code == 400</span>
+<span class="diff-unchanged">      assert response.json() == {"detail": "Cannot divide by zero"}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_current_date():</span>
+<span class="diff-unchanged">      response = client.get("/current-date")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"date": date.today().isoformat()}</span>
+<span class="diff-unchanged">  </span></code></pre>
+                    </details>
+                </td>
+                <td>
+                    <details>
+                        <summary>View More</summary>
+                        <div><strong>STDERR:</strong> <pre><code class="language-python"></code></pre></div>
+                        <div><strong>STDOUT:</strong> <pre><code class="language-python">============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.4, pluggy-1.5.0
+rootdir: /home/runner/work/qodo_cover/qodo_cover/fastapi
+plugins: anyio-4.8.0, cov-6.0.0
+collected 4 items
+
+test_app.py ....                                                         [100%]
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name          Stmts   Miss  Cover
+---------------------------------
+app.py           44     12    73%
+test_app.py      21      0   100%
+---------------------------------
+TOTAL            65     12    82%
+Coverage XML written to file coverage.xml
+
+
+============================== 4 passed in 0.54s ===============================
+</code></pre></div>
+                        <div><strong>Test Code:</strong> <pre><code class="language-python">def test_sqrt_negative_number():
+    response = client.get("/sqrt/-4")
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Cannot take square root of a negative number"}
+</code></pre></div>
+                        <div><strong>Imports:</strong> <pre><code class="language-python">""
+</code></pre></div>
+                    </details>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="status-PASS">PASS</td>
+                <td></td>
+                <td>0</td>
+                <td>python</td>
+                <td>
+                    <details>
+                        <summary>View Full Code</summary>
+                        <pre><code><span class="diff-unchanged">  import pytest</span>
+<span class="diff-unchanged">  from fastapi.testclient import TestClient</span>
+<span class="diff-unchanged">  from app import app</span>
+<span class="diff-unchanged">  from datetime import date</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  client = TestClient(app)</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_root():</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      Test the root endpoint by sending a GET request to "/" and checking the response status code and JSON body.</span>
+<span class="diff-unchanged">      """</span>
+<span class="diff-unchanged">      response = client.get("/")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"message": "Welcome to the FastAPI application!"}</span>
+<span class="diff-added">+ </span>
+<span class="diff-added">+ </span>
+<span class="diff-added">+ def test_days_until_new_year():</span>
+<span class="diff-added">+     response = client.get("/days-until-new-year")</span>
+<span class="diff-added">+     assert response.status_code == 200</span>
+<span class="diff-added">+     today = date.today()</span>
+<span class="diff-added">+     next_new_year = date(today.year + 1, 1, 1)</span>
+<span class="diff-added">+     expected_days = (next_new_year - today).days</span>
+<span class="diff-added">+     assert response.json() == {"days_until_new_year": expected_days}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_sqrt_negative_number():</span>
+<span class="diff-unchanged">      response = client.get("/sqrt/-4")</span>
+<span class="diff-unchanged">      assert response.status_code == 400</span>
+<span class="diff-unchanged">      assert response.json() == {"detail": "Cannot take square root of a negative number"}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_divide_by_zero():</span>
+<span class="diff-unchanged">      response = client.get("/divide/10/0")</span>
+<span class="diff-unchanged">      assert response.status_code == 400</span>
+<span class="diff-unchanged">      assert response.json() == {"detail": "Cannot divide by zero"}</span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  </span>
+<span class="diff-unchanged">  def test_current_date():</span>
+<span class="diff-unchanged">      response = client.get("/current-date")</span>
+<span class="diff-unchanged">      assert response.status_code == 200</span>
+<span class="diff-unchanged">      assert response.json() == {"date": date.today().isoformat()}</span>
+<span class="diff-unchanged">  </span></code></pre>
+                    </details>
+                </td>
+                <td>
+                    <details>
+                        <summary>View More</summary>
+                        <div><strong>STDERR:</strong> <pre><code class="language-python"></code></pre></div>
+                        <div><strong>STDOUT:</strong> <pre><code class="language-python">============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.4, pluggy-1.5.0
+rootdir: /home/runner/work/qodo_cover/qodo_cover/fastapi
+plugins: anyio-4.8.0, cov-6.0.0
+collected 5 items
+
+test_app.py .....                                                        [100%]
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name          Stmts   Miss  Cover
+---------------------------------
+app.py           44      8    82%
+test_app.py      28      0   100%
+---------------------------------
+TOTAL            72      8    89%
+Coverage XML written to file coverage.xml
+
+
+============================== 5 passed in 0.54s ===============================
+</code></pre></div>
+                        <div><strong>Test Code:</strong> <pre><code class="language-python">def test_days_until_new_year():
+    response = client.get("/days-until-new-year")
+    assert response.status_code == 200
+    today = date.today()
+    next_new_year = date(today.year + 1, 1, 1)
+    expected_days = (next_new_year - today).days
+    assert response.json() == {"days_until_new_year": expected_days}
+</code></pre></div>
+                        <div><strong>Imports:</strong> <pre><code class="language-python">""
+</code></pre></div>
+                    </details>
+                </td>
+            </tr>
+            
+        </table>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+    </body>
+    </html>
+    
