@@ -1,0 +1,16 @@
+2025-02-27 02:23:20,836 - cover_agent.CoverAgent - INFO - Current Coverage: 64.58%
+2025-02-27 02:23:20,836 - cover_agent.CoverAgent - INFO - Desired Coverage: 70%
+2025-02-27 02:23:40,075 - cover_agent.CoverAgent - INFO - Reached above target coverage of 70% (Current Coverage: 86.89%) in 1 iterations.
+2025-02-27 02:23:40,075 - cover_agent.CoverAgent - INFO - Total number of input tokens used for LLM model gpt-4o-2024-11-20: 3155
+2025-02-27 02:23:40,075 - cover_agent.CoverAgent - INFO - Total number of output tokens used for LLM model gpt-4o-2024-11-20: 611
+: 68.0%
+2025-02-27 02:23:36,918 - cover_agent.UnitTestValidator - INFO - Running test with the following command: "pytest test_app.py --cov=. --cov-report=xml --cov-report=term"
+2025-02-27 02:23:37,687 - cover_agent.UnitTestValidator - INFO - Test passed and coverage increased. Current coverage: 73.08%
+2025-02-27 02:23:37,691 - cover_agent.UnitTestValidator - INFO - Running test with the following command: "pytest test_app.py --cov=. --cov-report=xml --cov-report=term"
+2025-02-27 02:23:38,481 - cover_agent.UnitTestValidator - INFO - Test passed and coverage increased. Current coverage: 80.0%
+2025-02-27 02:23:38,484 - cover_agent.UnitTestValidator - INFO - Running test with the following command: "pytest test_app.py --cov=. --cov-report=xml --cov-report=term"
+2025-02-27 02:23:39,285 - cover_agent.UnitTestValidator - INFO - Test passed and coverage increased. Current coverage: 86.89%
+2025-02-27 02:23:39,288 - cover_agent.UnitTestValidator - INFO - Running build/test command to generate coverage report: "pytest test_app.py --cov=. --cov-report=xml --cov-report=term"
+2025-02-27 02:23:40,075 - cover_agent.UnitTestValidator - INFO - Initial coverage: 86.89%
+2025-02-27 02:23:40,080 - cover_agent.UnitTestValidator - INFO - Running build/test command to generate coverage report: "pytest test_app.py --cov=. --cov-report=xml --cov-report=term"
+2025-02-27 02:23:40,868 - cover_agent.UnitTestValidator - INFO - Initial coverage: 86.89%
