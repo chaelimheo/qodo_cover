@@ -7,23 +7,23 @@ on:
     types:
       - labeled
       - opened
-      - syncronize
+      - synchronize
 
 permissions:
-  pull-requests: write  # Allows commenting on pull requests
-  contents: write  # Allows reading files and creating pull requests
+  pull-requests: write
+  contents: write
 
 jobs:
   run-qodo-cover-pr-python:
-    # Only run if:
-    # 1. PR has the qodo-cover label
-    # 2. PR is open (not closed or draft)
     if: |
-      github.event.label.name == 'qodo-cover' &&
-      github.event.pull_request.state == 'open' &&
-      github.event.pull_request.draft == false
+      github.event.action == 'labeled' && github.event.label.name == 'qodo-cover' ||
+      github.event.action == 'opened' || github.event.action == 'synchronize'
     runs-on: ubuntu-22.04
+
     steps:
+      - name: Debug GitHub Event
+        run: echo '${{ toJson(github.event) }}'
+
       - name: Checkout PR branch
         uses: actions/checkout@v3
         with:
